@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Linq;
+using System.Threading.Tasks;
 using System.Web.Http;
 using Google.Apis.Services;
 using Google.Apis.Vision.v1;
@@ -31,35 +32,14 @@ namespace ComputerVisionAPI.Controllers
                         },
                         Features = new[]
                         {
-                            new Feature
-                            {
-                                Type = "LABEL_DETECTION"
-                            },
-                            new Feature
-                            {
-                                Type = "TEXT_DETECTION"
-                            },
-                            new Feature
-                            {
-                                Type = "FACE_DETECTION"
-                            },
-                            new Feature
-                            {
-                                Type = "LANDMARK_DETECTION"
-                            },
-                            new Feature
-                            {
-                                Type = "LOGO_DETECTION"
-                            },
-                            new Feature
-                            {
-                                Type = "SAFE_SEARCH_DETECTION"
-                            },
-                            new Feature
-                            {
-                                Type = "IMAGE_PROPERTIES"
-                            },
-                        }
+                            "LABEL_DETECTION",
+                            "TEXT_DETECTION",
+                            "FACE_DETECTION",
+                            "LANDMARK_DETECTION",
+                            "LOGO_DETECTION",
+                            "SAFE_SEARCH_DETECTION",
+                            "IMAGE_PROPERTIES"
+                        }.Select(x=> new Feature { Type = x }).ToArray()
                     }
                 }
             });
